@@ -10,7 +10,15 @@
     },
     {
       "name": "EntryAbility_label",
-      "value": "label"
+      "value": "TodoApp"
+    },
+    {
+      "name": "todoPage_header_title",
+      "value": "待办事项"
+    },
+    {
+      "name": "todoPage_tips_input_is_empty",
+      "value": "待办事项不能为空，请重新输入！"
     }
   ]
 }
