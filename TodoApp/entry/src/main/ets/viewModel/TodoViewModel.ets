@@ -1,15 +1,18 @@
 
 import { MockTodoItems, TodoItemModel } from '../model/TodoItemModel';
+
+@Observed
 export class TodoViewModel {
-  private items: Array<TodoItemModel> = []
+  public items: Array<TodoItemModel> = []
+  public info: string = ""
   private isItemsLoaded: boolean = false
 
-  getItems(): TodoItemModel[] {
-    if (!this.isItemsLoaded) {
-      this.isItemsLoaded = true
-      this.items = MockTodoItems
+  loadData() {
+    if (this.isItemsLoaded) {
+      return
     }
-    return this.items
+    this.isItemsLoaded = true
+    this.items = MockTodoItems
   }
 
   deleteItem(model: TodoItemModel) {
@@ -18,6 +21,7 @@ export class TodoViewModel {
 
   addNewItem(newItemTitle: string) {
     let item = new TodoItemModel(newItemTitle, false)
-    this.items.push(item)
+    this.items = this.items.concat([item])
   }
+
 }

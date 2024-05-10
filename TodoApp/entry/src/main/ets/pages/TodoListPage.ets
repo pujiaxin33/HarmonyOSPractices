@@ -1,33 +1,30 @@
 
 import common from '@ohos.app.ability.common'
+import { Constants } from '../common/Constants'
 import { TodoItemModel } from '../model/TodoItemModel'
 import { TodoViewModel } from '../viewModel/TodoViewModel'
 import { TodoItemView } from '../views/TodoItemView'
-let viewModel = new TodoViewModel()
 
 @Entry
 @Component
 struct TodoListPage {
-  @State items: TodoItemModel[] = []
+  @State viewModel: TodoViewModel = new TodoViewModel()
   @State newItemTitle: string = ''
-  @State headerTitle: string = ''
 
   aboutToAppear() {
-    this.updateHeaderTitle()
-    this.items = viewModel.getItems()
+    this.viewModel.loadData()
   }
 
   build() {
     List({ space: 10}) {
-      ListItemGroup( {header: this.itemHead(this.headerTitle), footer: this.itemFooter(), space: 10}) {
-        ForEach(this.items, (item: TodoItemModel, index?: number) => {
+      ListItemGroup( {header: this.itemHead(Constants.TodoHeaderTitle), footer: this.itemFooter(), space: 10}) {
+        ForEach(this.viewModel.items, (item: TodoItemModel, index?: number) => {
           ListItem() {
             TodoItemView({
               title: item.title,
               isCompleted: item.isCompleted,
               deleteButtonDidClicked: () => {
-                viewModel.deleteItem(item)
-                this.items = viewModel.getItems()
+                this.viewModel.deleteItem(item)
               },
               isCompletedChanged: (value) => {
                 item.isCompleted = value
@@ -85,18 +82,9 @@ struct TodoListPage {
       })
       return
     }
-    viewModel.addNewItem(this.newItemTitle)
-    this.items = viewModel.getItems()
+    this.viewModel.addNewItem(this.newItemTitle)
     this.newItemTitle = ''
     focusControl.requestFocus("addButton")
   }
 
-  private updateHeaderTitle() {
-    let context = getContext(this) as common.UIAbilityContext
-    context.resourceManager.getStringValue($r('app.string.todoPage_header_title'), (error, value) => {
-      if (value) {
-        this.headerTitle = value
-      }
-    })
-  }
 }
