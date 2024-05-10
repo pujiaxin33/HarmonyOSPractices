@@ -55,7 +55,8 @@ struct TodoListPage {
       TextInput({ text: this.newItemTitle, placeholder: "添加待办事项"})
       .onChange((text: string) => {
         this.newItemTitle = text
-      }).width('70%')
+      })
+        .layoutWeight(1)
         .onSubmit((enterKey: EnterKeyType) => {
           focusControl.requestFocus("addButton")
           if (enterKey == EnterKeyType.Done) {
