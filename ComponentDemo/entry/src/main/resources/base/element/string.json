@@ -11,6 +11,42 @@
     {
       "name": "EntryAbility_label",
       "value": "label"
+    },
+    {
+      "name": "login_page_title",
+      "value": "登录界面"
+    },
+    {
+      "name": "login_page_subtitle",
+      "value": "登录账号以使用更多服务"
+    },
+    {
+      "name": "login_page_placeholder_account",
+      "value": "账号"
+    },
+    {
+      "name": "login_page_placeholder_password",
+      "value": "密码"
+    },
+    {
+      "name": "login_page_button_login_with_verify_code",
+      "value": "短信验证码登录"
+    },
+    {
+      "name": "login_page_button_forgot_password",
+      "value": "忘记密码"
+    },
+    {
+      "name": "login_page_button_login",
+      "value": "登录"
+    },
+    {
+      "name": "login_page_button_register",
+      "value": "注册账号"
+    },
+    {
+      "name": "login_page_tips_login_with_others_way",
+      "value": "其他方式登录"
     }
   ]
 }

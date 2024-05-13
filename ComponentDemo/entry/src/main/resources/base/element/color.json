@@ -3,6 +3,14 @@
     {
       "name": "start_window_background",
       "value": "#FFFFFF"
+    },
+    {
+      "name": "text_button_font_color",
+      "value": "#FF0A7DFF"
+    },
+    {
+      "name": "page_bg_color",
+      "value": "#F3F4F6"
     }
   ]
 }
