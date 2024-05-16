@@ -11,6 +11,10 @@
     {
       "name": "page_bg_color",
       "value": "#F3F4F6"
+    },
+    {
+      "name": "app_tint_color",
+      "value": "#FF0A7DFF"
     }
   ]
 }

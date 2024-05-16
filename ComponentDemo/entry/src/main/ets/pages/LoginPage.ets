@@ -1,5 +1,7 @@
 
+import inputMethod from '@ohos.inputMethod'
 import { LoginViewModel } from '../viewModel/LoginViewModel'
+import { ChannelButton, TextButton } from '../views/CommonViews'
 @Entry
 @Component
 struct Index {
@@ -19,6 +21,7 @@ struct Index {
     .width('100%')
     .height('100%')
     .backgroundColor($r('app.color.page_bg_color'))
+    .enabled(this.viewModel.isLogging ? false : true)
   }
 
   @Builder TitleHeader() {
@@ -57,14 +60,10 @@ struct Index {
 
   @Builder VerifyCodeAndForgotPasswordButtons() {
     Row() {
-      Button($r('app.string.login_page_button_login_with_verify_code'))
-        .fontColor($r('app.color.text_button_font_color'))
-        .backgroundColor(Color.Transparent)
+      TextButton($r('app.string.login_page_button_login_with_verify_code'))
 
       Blank()
-      Button($r('app.string.login_page_button_forgot_password'))
-        .fontColor($r('app.color.text_button_font_color'))
-        .backgroundColor(Color.Transparent)
+      TextButton($r('app.string.login_page_button_forgot_password'))
     }
     .margin({ top: 15, left: 15, right: 15 })
     .width('100%')
@@ -76,12 +75,18 @@ struct Index {
         .width('100%')
         .enabled(this.viewModel.isLoginButtonEnabled)
         .onClick(() => {
+          inputMethod.getController().stopInputSession()
           this.viewModel.login()
         })
 
-      Button($r('app.string.login_page_button_register'))
-        .fontColor($r('app.color.text_button_font_color'))
-        .backgroundColor(Color.Transparent)
+      TextButton($r('app.string.login_page_button_register'))
+
+      if (this.viewModel.isLogging) {
+        LoadingProgress()
+          .color($r('app.color.app_tint_color'))
+          .width(50)
+          .height(50)
+      }
     }
     .margin({ top: 50 })
     .padding({ left: 15, right: 15})
@@ -94,20 +99,11 @@ struct Index {
         .fontColor(Color.Gray)
 
       Row() {
-        Button('微信')
-          .fontSize(15)
-          .type(ButtonType.Circle)
-          .padding(0)
+        ChannelButton($r('app.string.login_page_channel_wechat'))
 
-        Button('QQ')
-          .fontSize(15)
-          .type(ButtonType.Circle)
-          .padding(0)
+        ChannelButton($r('app.string.login_page_channel_qq'))
 
-        Button('微博')
-          .fontSize(15)
-          .type(ButtonType.Circle)
-          .padding(0)
+        ChannelButton($r('app.string.login_page_channel_weibo'))
       }
       .width('100%')
       .justifyContent(FlexAlign.SpaceEvenly)

@@ -47,6 +47,26 @@
     {
       "name": "login_page_tips_login_with_others_way",
       "value": "其他方式登录"
+    },
+    {
+      "name": "login_page_channel_wechat",
+      "value": "微信"
+    },
+    {
+      "name": "login_page_channel_qq",
+      "value": "QQ"
+    },
+    {
+      "name": "login_page_channel_weibo",
+      "value": "微博"
+    },
+    {
+      "name": "login_page_alert_input_error_title",
+      "value": "错误提示"
+    },
+    {
+      "name": "login_page_alert_input_error_message",
+      "value": "请输入用户名和密码"
     }
   ]
 }

@@ -21,4 +21,8 @@ export class MainViewModel {
       new JobTargetModel('子目标13', '10%', '更新时间：2024/03/03')
     ]
   }
+
+  refreshData() {
+    this.loadData()
+  }
 }

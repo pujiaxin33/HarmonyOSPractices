@@ -31,9 +31,6 @@ export struct JobTargetItem {
         .alignItems(HorizontalAlign.Start)
 
         Blank()
-        // Progress({ value: 10, type: ProgressType.Ring })
-        //   .width(50)
-        //   .overlay('10%', { align: Alignment.Center })
 
         Stack() {
           Progress({ value: 10, type: ProgressType.Ring })

@@ -1,8 +1,10 @@
 import router from '@ohos.router';
+import { RouterPaths } from '../Constants/Constants';
 
 @Observed
 export class LoginViewModel {
   public isLoginButtonEnabled: boolean = false
+  public isLogging: boolean = false
   private accountText?: string = null
   private passwordText?: string = null
 
@@ -18,11 +20,15 @@ export class LoginViewModel {
 
   login() {
     if (this.accountText && this.passwordText) {
-      router.pushUrl({ url: 'pages/MainPage' })
+      this.isLogging = true
+      setTimeout(() => {
+        this.isLogging = false
+        router.pushUrl({ url: RouterPaths.mainPage })
+      }, 2000)
     } else {
       AlertDialog.show({
-        title: "错误提示",
-        message: "请输入用户名和密码"
+        title: $r('app.string.login_page_alert_input_error_title'),
+        message: $r('app.string.login_page_alert_input_error_message')
       })
     }
   }

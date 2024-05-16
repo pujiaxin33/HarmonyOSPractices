@@ -7,29 +7,31 @@ import { SubtargetItem } from '../views/SubtargetItem'
 @Component
 struct MainPage {
   @State viewModel: MainViewModel = new MainViewModel()
-
+  @State isRefreshing: boolean = false
   aboutToAppear() {
     this.viewModel.loadData()
   }
 
   build() {
-    List() {
-      ListItemGroup({ header: this.SectionHeader('工作目标')}) {
-        ListItem() {
-          JobTargetItem()
+    Refresh({ refreshing: $$this.isRefreshing}) {
+      List() {
+        ListItemGroup({ header: this.SectionHeader('工作目标')}) {
+          ListItem() {
+            JobTargetItem()
+          }
+        }
+        ListItemGroup({ space: 5, header: this.SectionHeader('子目标')}) {
+          ForEach(this.viewModel.subtargetItems, (item: JobTargetModel, index?: number) => {
+            ListItem() {
+              SubtargetItem({title: item.title, progress: item.progress, updateDate: item.updateDate })
+            }
+          }, item => JSON.stringify(item))
         }
       }
-      ListItemGroup({ space: 5, header: this.SectionHeader('子目标')}) {
-        ForEach(this.viewModel.subtargetItems, (item: JobTargetModel, index?: number) => {
-          ListItem() {
-            SubtargetItem({title: item.title, progress: item.progress, updateDate: item.updateDate })
-          }
-        }, item => JSON.stringify(item))
-      }
+      .height('100%')
+      .padding(15)
+      .backgroundColor($r('app.color.page_bg_color'))
     }
-    .height('100%')
-    .padding(15)
-    .backgroundColor($r('app.color.page_bg_color'))
   }
 
   @Builder private SectionHeader(text: string) {
@@ -38,4 +40,5 @@ struct MainPage {
       .fontWeight(FontWeight.Bold)
       .margin({ top: 10, bottom: 10 })
   }
+
 }
