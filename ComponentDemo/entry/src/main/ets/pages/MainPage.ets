@@ -15,12 +15,12 @@ struct MainPage {
   build() {
     Refresh({ refreshing: $$this.isRefreshing}) {
       List() {
-        ListItemGroup({ header: this.SectionHeader('工作目标')}) {
+        ListItemGroup({ header: this.SectionHeader($r('app.string.main_page_section_title_target'))}) {
           ListItem() {
             JobTargetItem()
           }
         }
-        ListItemGroup({ space: 5, header: this.SectionHeader('子目标')}) {
+        ListItemGroup({ space: 5, header: this.SectionHeader($r('app.string.main_page_section_title_subtarget'))}) {
           ForEach(this.viewModel.subtargetItems, (item: JobTargetModel, index?: number) => {
             ListItem() {
               SubtargetItem({title: item.title, progress: item.progress, updateDate: item.updateDate })
@@ -34,7 +34,7 @@ struct MainPage {
     }
   }
 
-  @Builder private SectionHeader(text: string) {
+  @Builder private SectionHeader(text: string | Resource) {
     Text(text)
       .fontSize(30)
       .fontWeight(FontWeight.Bold)

@@ -67,6 +67,14 @@
     {
       "name": "login_page_alert_input_error_message",
       "value": "请输入用户名和密码"
+    },
+    {
+      "name": "main_page_section_title_target",
+      "value": "工作目标"
+    },
+    {
+      "name": "main_page_section_title_subtarget",
+      "value": "子目标"
     }
   ]
 }
