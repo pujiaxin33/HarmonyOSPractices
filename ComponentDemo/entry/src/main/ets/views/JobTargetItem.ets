@@ -3,41 +3,12 @@
 export struct JobTargetItem {
   build() {
     Column({ space: 5}) {
-      Row({ space: 10 }) {
-        Image($r('app.media.job_target_icon'))
-          .width(100)
-          .height(100)
-
-        Column({ space: 10 }) {
-          Text('第一季度运营目标')
-            .fontWeight(FontWeight.Bold)
-
-          Text('实现用户量与用户活跃度提升')
-            .fontColor(Color.Gray)
-            .fontSize(10)
-        }
-      }
+      this.header()
 
       Row() {
-        Column() {
-          Text('整体进度')
-
-          Text('更新时间')
-            .fontColor(Color.Gray)
-            .fontSize(10)
-
-          Text('03/26/2024')
-        }
-        .alignItems(HorizontalAlign.Start)
-
+        this.infoPanel()
         Blank()
-
-        Stack() {
-          Progress({ value: 10, type: ProgressType.Ring })
-            .width(50)
-
-          Text('10%')
-        }
+        this.progress()
       }
       .width('100%')
       .alignItems(VerticalAlign.Center)
@@ -47,5 +18,44 @@ export struct JobTargetItem {
     .backgroundColor(Color.White)
     .borderRadius(5)
     .alignItems(HorizontalAlign.Start)
+  }
+
+  @Builder header() {
+    Row({ space: 10 }) {
+      Image($r('app.media.job_target_icon'))
+        .width(100)
+        .height(100)
+
+      Column({ space: 10 }) {
+        Text($r('app.string.main_page_target_title'))
+          .fontWeight(FontWeight.Bold)
+
+        Text($r('app.string.main_page_target_subtitle'))
+          .fontColor(Color.Gray)
+          .fontSize(10)
+      }
+    }
+  }
+
+  @Builder infoPanel() {
+    Column() {
+      Text($r('app.string.main_page_target_whole_progress'))
+
+      Text($r('app.string.main_page_target_update_date'))
+        .fontColor(Color.Gray)
+        .fontSize(10)
+
+      Text('03/26/2024')
+    }
+    .alignItems(HorizontalAlign.Start)
+  }
+
+  @Builder progress() {
+    Stack() {
+      Progress({ value: 10, type: ProgressType.Ring })
+        .width(50)
+
+      Text('10%')
+    }
   }
 }

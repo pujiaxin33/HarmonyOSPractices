@@ -1,12 +1,11 @@
 import router from '@ohos.router';
 import { RouterPaths } from '../Constants/Constants';
 
-@Observed
 export class LoginViewModel {
   public isLoginButtonEnabled: boolean = false
   public isLogging: boolean = false
-  private accountText?: string = null
-  private passwordText?: string = null
+  public accountText: string = ''
+  public passwordText: string = ''
 
   updateAccount(text: string) {
     this.accountText = text
@@ -19,22 +18,15 @@ export class LoginViewModel {
   }
 
   login() {
-    if (this.accountText && this.passwordText) {
-      this.isLogging = true
-      setTimeout(() => {
-        this.isLogging = false
-        router.pushUrl({ url: RouterPaths.mainPage })
-      }, 2000)
-    } else {
-      AlertDialog.show({
-        title: $r('app.string.login_page_alert_input_error_title'),
-        message: $r('app.string.login_page_alert_input_error_message')
-      })
-    }
+    this.isLogging = true
+    setTimeout(() => {
+      this.isLogging = false
+      router.pushUrl({ url: RouterPaths.mainPage })
+    }, 2000)
   }
 
   private updateLoginButtonStatus() {
-    if (this.accountText && this.passwordText) {
+    if (this.accountText.length > 0 && this.passwordText.length > 0) {
       this.isLoginButtonEnabled = true
     } else {
       this.isLoginButtonEnabled = false

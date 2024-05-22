@@ -6,8 +6,6 @@ import { ChannelButton, TextButton } from '../views/CommonViews'
 @Component
 struct Index {
   @State viewModel: LoginViewModel = new LoginViewModel()
-  @State private accountText: string = ''
-  @State private passwordText: string = ''
 
   build() {
     Column() {
@@ -43,13 +41,13 @@ struct Index {
 
   @Builder InputForm() {
     Column({ space: 5}) {
-      TextInput({text: this.accountText, placeholder: $r('app.string.login_page_placeholder_account')})
+      TextInput({text: this.viewModel.accountText, placeholder: $r('app.string.login_page_placeholder_account')})
         .type(InputType.Normal)
         .onChange((value) => {
           this.viewModel.updateAccount(value)
         })
 
-      TextInput({text: this.passwordText, placeholder: $r('app.string.login_page_placeholder_password')})
+      TextInput({text: this.viewModel.passwordText, placeholder: $r('app.string.login_page_placeholder_password')})
         .type(InputType.Password)
         .onChange((value) => {
           this.viewModel.updatePassword(value)

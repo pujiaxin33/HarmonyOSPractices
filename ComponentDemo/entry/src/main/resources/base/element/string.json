@@ -75,6 +75,22 @@
     {
       "name": "main_page_section_title_subtarget",
       "value": "子目标"
+    },
+    {
+      "name": "main_page_target_title",
+      "value": "第一季度运营目标"
+    },
+    {
+      "name": "main_page_target_subtitle",
+      "value": "实现用户量与用户活跃度提升"
+    },
+    {
+      "name": "main_page_target_whole_progress",
+      "value": "整体进度"
+    },
+    {
+      "name": "main_page_target_update_date",
+      "value": "更新时间"
     }
   ]
 }

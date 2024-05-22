@@ -8,6 +8,7 @@ import { SubtargetItem } from '../views/SubtargetItem'
 struct MainPage {
   @State viewModel: MainViewModel = new MainViewModel()
   @State isRefreshing: boolean = false
+
   aboutToAppear() {
     this.viewModel.loadData()
   }
@@ -32,6 +33,12 @@ struct MainPage {
       .padding(15)
       .backgroundColor($r('app.color.page_bg_color'))
     }
+    .onRefreshing(() => {
+        setTimeout( () => {
+          this.viewModel.loadData()
+          this.isRefreshing = false
+        }, 1000)
+    })
   }
 
   @Builder private SectionHeader(text: string | Resource) {
