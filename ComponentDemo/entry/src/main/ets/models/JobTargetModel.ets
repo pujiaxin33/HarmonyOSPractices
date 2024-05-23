@@ -1,4 +1,5 @@
 
+@Observed
 export class JobTargetModel {
   title: string
   progress: string
@@ -9,4 +10,7 @@ export class JobTargetModel {
     this.progress = progress
     this.updateDate = updateDate
   }
+}
+@Observed
+export  class JobTargetModelArray extends Array<JobTargetModel> {
 }
