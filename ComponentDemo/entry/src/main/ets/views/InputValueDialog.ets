@@ -3,7 +3,7 @@ import { TextButton } from './CommonViews'
 
 @CustomDialog
 export default struct InputValueDialog {
-  public title: string;
+  public title: string | Resource;
   onConfirm: (string) => void
   private inputText: string;
   private controller?: CustomDialogController;
@@ -14,17 +14,17 @@ export default struct InputValueDialog {
         .fontSize(20)
         .fontWeight(FontWeight.Bold)
 
-      TextInput({ placeholder: '请输入子目标名称' })
+      TextInput({ placeholder: $r('app.string.main_page_input_target_name_placeholder') })
       .onChange((value) => {
         this.inputText = value
       })
 
       Row() {
-        TextButton('取消', null, (event?: ClickEvent) => {
+        TextButton($r('app.string.common_cancel'), null, (event?: ClickEvent) => {
             this.controller.close()
         })
 
-        TextButton('确认', null, (event?: ClickEvent) => {
+        TextButton($r('app.string.common_confirm'), null, (event?: ClickEvent) => {
           this.onConfirm(this.inputText)
           this.controller.close()
         })

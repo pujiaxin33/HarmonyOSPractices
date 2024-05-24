@@ -91,6 +91,42 @@
     {
       "name": "main_page_target_update_date",
       "value": "更新时间"
+    },
+    {
+      "name": "common_cancel",
+      "value": "取消"
+    },
+    {
+      "name": "common_confirm",
+      "value": "确认"
+    },
+    {
+      "name": "main_page_input_target_name_placeholder",
+      "value": "请输入子目标名称"
+    },
+    {
+      "name": "main_page_toast_add_success",
+      "value": "添加成功"
+    },
+    {
+      "name": "main_page_toast_delete_success",
+      "value": "删除成功"
+    },
+    {
+      "name": "common_delete",
+      "value": "删除"
+    },
+    {
+      "name": "common_edit",
+      "value": "编辑"
+    },
+    {
+      "name": "common_select_all",
+      "value": "全选"
+    },
+    {
+      "name": "main_page_add_target",
+      "value": "添加子目标"
     }
   ]
 }

@@ -14,6 +14,9 @@ export struct SubtargetItem {
     Column() {
       Row() {
         Text(this.target.title)
+          .textOverflow({ overflow: TextOverflow.Ellipsis })
+          .width('30%')
+          .maxLines(2)
 
         Blank()
 
@@ -47,11 +50,11 @@ export struct SubtargetItem {
 
   @Builder OperationPanel() {
     Row() {
-      TextButton('取消', null, (event?: ClickEvent) => {
+      TextButton($r('app.string.common_cancel'), null, (event?: ClickEvent) => {
         this.onCancel()
       })
 
-      TextButton('完成', null, (event?: ClickEvent) => {
+      TextButton($r('app.string.common_confirm'), null, (event?: ClickEvent) => {
         this.onFinish()
       })
     }

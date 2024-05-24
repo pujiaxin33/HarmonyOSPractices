@@ -13,7 +13,7 @@ struct MainPage {
   @State expandIndex: number = -1
 
   customDialogController: CustomDialogController = new CustomDialogController({
-    builder: InputValueDialog({title: "添加子目标", onConfirm: (inputText: string) => {
+    builder: InputValueDialog({title: $r('app.string.main_page_add_target'), onConfirm: (inputText: string) => {
       this.viewModel.addNewTarget(inputText)
     }}),
     alignment: DialogAlignment.Center,
@@ -30,14 +30,14 @@ struct MainPage {
 
       Column() {
         if (this.viewModel.isEditing) {
-          Button('删除')
+          Button($r('app.string.common_delete'))
             .fontColor(Color.Red)
             .backgroundColor(Color.Transparent)
             .onClick(() => {
                 this.viewModel.deleteSelectedItems()
             })
         } else {
-          Button('添加子目标')
+          Button($r('app.string.main_page_add_target'))
             .fontColor($r('app.color.text_button_font_color'))
             .backgroundColor(Color.Transparent)
             .onClick(() => {
@@ -49,6 +49,7 @@ struct MainPage {
       .padding({ top: 10, bottom: 10 })
     }
   }
+
   @Builder private ListView() {
     Refresh({ refreshing: $$this.isRefreshing}) {
       List() {
@@ -116,14 +117,14 @@ struct MainPage {
 
       if (this.viewModel.isEditing) {
         Row() {
-          Button('取消')
+          Button($r('app.string.common_cancel'))
             .fontColor($r('app.color.text_button_font_color'))
             .backgroundColor(Color.Transparent)
             .onClick(() => {
                 this.viewModel.cancelEdit()
             })
 
-          Button('全选')
+          Button($r('app.string.common_select_all'))
             .fontColor($r('app.color.text_button_font_color'))
             .backgroundColor(Color.Transparent)
             .onClick(() => {
@@ -131,7 +132,7 @@ struct MainPage {
             })
         }
       } else {
-        Button('编辑')
+        Button($r('app.string.common_edit'))
           .fontColor($r('app.color.text_button_font_color'))
           .backgroundColor(Color.Transparent)
           .onClick(() => {

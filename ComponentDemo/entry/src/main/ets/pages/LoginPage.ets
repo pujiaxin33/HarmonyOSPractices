@@ -4,7 +4,7 @@ import { LoginViewModel } from '../viewModel/LoginViewModel'
 import { ChannelButton, TextButton } from '../views/CommonViews'
 @Entry
 @Component
-struct Index {
+struct LoginPage {
   @State viewModel: LoginViewModel = new LoginViewModel()
 
   build() {
