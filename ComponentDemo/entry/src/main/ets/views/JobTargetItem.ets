@@ -1,6 +1,8 @@
 
 @Component
-export struct JobTargetItem {
+export struct JobTargetSectionItem {
+  @Prop completedPercent: number
+
   build() {
     Column({ space: 5}) {
       this.header()
@@ -52,10 +54,10 @@ export struct JobTargetItem {
 
   @Builder progress() {
     Stack() {
-      Progress({ value: 10, type: ProgressType.Ring })
+      Progress({ value: this.completedPercent, type: ProgressType.Ring })
         .width(50)
 
-      Text('10%')
+      Text(`${this.completedPercent}%`)
     }
   }
 }
