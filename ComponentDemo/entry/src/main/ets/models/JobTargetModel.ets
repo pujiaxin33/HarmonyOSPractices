@@ -4,11 +4,13 @@ export class JobTargetModel {
   title: string
   progress: number
   updateDate: string
+  isSelected: boolean
 
-  constructor(title: string, progress: number, updateDate: string) {
+  constructor(title: string, progress: number, updateDate: string, isSelected: boolean = false) {
     this.title = title
     this.progress = progress
     this.updateDate = updateDate
+    this.isSelected = isSelected
   }
 
   get isCompleted(): boolean {
@@ -19,6 +21,7 @@ export class JobTargetModel {
     return `title: ${this.title}, progress: ${this.progress}, updateDate:${this.updateDate}`;
   }
 }
+
 @Observed
 export class JobTargetModelArray extends Array<JobTargetModel> {
 }

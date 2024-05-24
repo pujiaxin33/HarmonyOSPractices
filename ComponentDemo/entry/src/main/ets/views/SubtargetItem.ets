@@ -5,7 +5,8 @@ import { TextButton } from './CommonViews'
 export struct SubtargetItem {
   @ObjectLink target: JobTargetModel
   index: number
-  @Prop selectedIndex: number
+  @Prop expandIndex: number
+  @Prop isEditing: boolean
   onFinish: () => void
   onCancel: () => void
 
@@ -16,16 +17,26 @@ export struct SubtargetItem {
 
         Blank()
 
-        Column() {
-          Text(this.target.progress.toString() + '%')
-          Text(this.target.updateDate)
-            .fontColor(Color.Gray)
+        Row() {
+          Column() {
+            Text(this.target.progress.toString() + '%')
+            Text(this.target.updateDate)
+              .fontColor(Color.Gray)
+          }
+          .alignItems(HorizontalAlign.End)
+
+          if (this.isEditing) {
+            Checkbox()
+              .select(this.target.isSelected)
+              .onChange((value) => {
+                this.target.isSelected = value
+              })
+          }
         }
-        .alignItems(HorizontalAlign.End)
       }
       .width('100%')
 
-      if (this.selectedIndex == this.index) {
+      if (this.expandIndex == this.index) {
         this.OperationPanel()
       }
     }
