@@ -1,23 +1,21 @@
 
+import { FutureWeatherItemModel } from '../models/FutureWeatherItemModel'
 @Preview
 @Component
 export struct FutureWeatherItemView {
-  temperature: number = 25
-  icon: string = "https://openweathermap.org/img/wn/03d@2x.png"
-  date: string = "17:00"
+  model: FutureWeatherItemModel
 
   build() {
     Column({ space: 15 }) {
-      Text(`${this.temperature}°`)
+      Text(this.model.temperature)
         .fontColor(Color.White)
 
-      Image(this.icon)
+      Image(this.model.icon)
         .alt($r('app.media.icon_weather_default'))
         .size({ width: 25, height: 25 })
 
-      Text(this.date)
+      Text(this.model.date)
         .fontColor(Color.Gray)
     }
-    .backgroundColor(Color.Black)
   }
 }
