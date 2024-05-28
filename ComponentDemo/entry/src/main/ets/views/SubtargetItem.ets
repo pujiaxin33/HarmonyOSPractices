@@ -1,6 +1,7 @@
 
 import { JobTargetModel } from '../models/JobTargetModel'
 import { TextButton } from './CommonViews'
+
 @Component
 export struct SubtargetItem {
   @ObjectLink target: JobTargetModel

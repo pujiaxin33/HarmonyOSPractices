@@ -7,7 +7,6 @@ import { SubtargetItem } from '../views/SubtargetItem'
 @Entry
 @Component
 struct MainPage {
-  @State subtargetItems: JobTargetModelArray = null
   @State viewModel: MainViewModel = new MainViewModel()
   @State isRefreshing: boolean = false
   @State expandIndex: number = -1
@@ -21,7 +20,7 @@ struct MainPage {
   });
 
   aboutToAppear() {
-    this.subtargetItems = this.viewModel.loadData()
+    this.viewModel.loadData()
   }
 
   build() {
@@ -59,7 +58,7 @@ struct MainPage {
           }
         }
         ListItemGroup({ space: 5, header: this.SubtargetListSectionHeader($r('app.string.main_page_section_title_subtarget'))}) {
-          ForEach(this.subtargetItems, (item: JobTargetModel, index?: number) => {
+          ForEach(this.viewModel.subtargetItems, (item: JobTargetModel, index?: number) => {
             ListItem() {
               SubtargetItem({
                 target: item,
@@ -115,29 +114,31 @@ struct MainPage {
 
       Blank()
 
-      if (this.viewModel.isEditing) {
-        Row() {
-          Button($r('app.string.common_cancel'))
-            .fontColor($r('app.color.text_button_font_color'))
-            .backgroundColor(Color.Transparent)
-            .onClick(() => {
+      if (this.viewModel.subtargetItems.length > 0) {
+        if (this.viewModel.isEditing) {
+          Row() {
+            Button($r('app.string.common_cancel'))
+              .fontColor($r('app.color.text_button_font_color'))
+              .backgroundColor(Color.Transparent)
+              .onClick(() => {
                 this.viewModel.cancelEdit()
-            })
+              })
 
-          Button($r('app.string.common_select_all'))
+            Button($r('app.string.common_select_all'))
+              .fontColor($r('app.color.text_button_font_color'))
+              .backgroundColor(Color.Transparent)
+              .onClick(() => {
+                this.viewModel.selectAllItems()
+              })
+          }
+        } else {
+          Button($r('app.string.common_edit'))
             .fontColor($r('app.color.text_button_font_color'))
             .backgroundColor(Color.Transparent)
             .onClick(() => {
-                this.viewModel.selectAllItems()
+              this.viewModel.startEdit()
             })
         }
-      } else {
-        Button($r('app.string.common_edit'))
-          .fontColor($r('app.color.text_button_font_color'))
-          .backgroundColor(Color.Transparent)
-          .onClick(() => {
-            this.viewModel.startEdit()
-          })
       }
     }
     .width('100%')

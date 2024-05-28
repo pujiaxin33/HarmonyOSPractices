@@ -14,7 +14,7 @@ export class JobTargetModel {
   }
 
   get isCompleted(): boolean {
-    return this.progress >= 100
+    return this.progress == 100
   }
 
   toString(): string {
