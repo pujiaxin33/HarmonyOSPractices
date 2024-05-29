@@ -1,6 +1,20 @@
 {
   "app": {
-    "signingConfigs": [],
+    "signingConfigs": [
+      {
+        "name": "default",
+        "type": "HarmonyOS",
+        "material": {
+          "certpath": "/Users/jiaxin.pu/.ohos/config/auto_debug_Weather_com.example.weather_80086000155413268.cer",
+          "storePassword": "0000001A8B7043FC3D40362A8A25FE4E6E42E75EEE59B7657BF2FFF5FDADC7935CAF262AE062981E67C2",
+          "keyAlias": "debugKey",
+          "keyPassword": "0000001AB7187D85EED7276A52737EDBE3049CB2504FC257E587C3CB6B34036C52507E20641A9225E519",
+          "profile": "/Users/jiaxin.pu/.ohos/config/auto_debug_Weather_com.example.weather_80086000155413268.p7b",
+          "signAlg": "SHA256withECDSA",
+          "storeFile": "/Users/jiaxin.pu/.ohos/config/auto_debug_Weather_com.example.weather_80086000155413268.p12"
+        }
+      }
+    ],
     "compileSdkVersion": 9,
     "compatibleSdkVersion": 9,
     "products": [

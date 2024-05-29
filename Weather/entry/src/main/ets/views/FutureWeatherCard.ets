@@ -7,7 +7,7 @@ export struct FutureWeatherCard {
 
   build() {
     Column({ space: 5 }) {
-      Text("3小时天气预报")
+      Text($r('app.string.3hours_forecast_title'))
       .fontColor(Color.White)
 
       List( { space: 10 }) {
@@ -18,7 +18,7 @@ export struct FutureWeatherCard {
         }, item => JSON.stringify(item))
       }
       .width('100%')
-      .height(110)
+      .height(130)
       .padding({ top: 10, left: 10, bottom: 10, right: 0 })
       .backgroundColor('#161D27')
       .borderRadius(5)

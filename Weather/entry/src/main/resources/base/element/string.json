@@ -11,6 +11,18 @@
     {
       "name": "EntryAbility_label",
       "value": "label"
+    },
+    {
+      "name": "future_24hours_prefix",
+      "value": "未来24小时："
+    },
+    {
+      "name": "feel_likes_prefix",
+      "value": "体感温度："
+    },
+    {
+      "name": "3hours_forecast_title",
+      "value": "3小时天气预报"
     }
   ]
 }
