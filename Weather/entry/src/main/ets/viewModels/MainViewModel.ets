@@ -34,6 +34,9 @@ export class MainViewModel {
     )
     this.isLoading = false
     */
+    this.useCase.getLocalCityWeather().then((model) => {
+      this.cityWeatherCardModel = this.convertToCityWeatherCardModel(model)
+    })
 
     this.useCase.requestCityWeather().then((model) => {
       this.isCityWeatherLoaded = true
@@ -59,6 +62,9 @@ export class MainViewModel {
     this.futureWeatherItems = items
     this.isLoading = false
     */
+    this.useCase.getLocalFutureWeather().then((model) => {
+      this.futureWeatherItems = this.convertToFutureWeatherItemModels(model)
+    })
 
     this.useCase.requestFutureWeather().then((model) => {
       this.futureWeatherItems = this.convertToFutureWeatherItemModels(model)
