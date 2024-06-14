@@ -10,9 +10,11 @@ export class TimelineViewModel {
   profile: TimelineProfileModel
   moments: TimelineMomentModel[] = []
   isHeaderRefreshing: boolean = false
+  isFooterLoading: boolean = false
   private useCase: TimelineUseCase = new TimelineUseCase()
   private innerMoments: TimelineMomentModel[] = []
-  private pageIndex: number = 0
+  private pageIndex: number = 1
+  private hasMore: boolean = true
 
   loadData() {
     this.requestData()
@@ -23,13 +25,23 @@ export class TimelineViewModel {
   }
 
   loadMore() {
-    let targetNumber = this.pageIndex * 5
-    if (this.innerMoments.length >= targetNumber) {
-      this.moments = this.innerMoments.slice(0, targetNumber)
-      this.pageIndex += 1
-    } else {
-      this.moments = this.innerMoments
+    if (this.isFooterLoading || !this.hasMore) {
+      return
     }
+    this.isFooterLoading = true
+    setTimeout(() => {
+
+      this.pageIndex += 1
+      let targetNumber = this.pageIndex * 5
+      if (this.innerMoments.length >= targetNumber) {
+        this.moments = this.innerMoments.slice(0, targetNumber)
+      } else {
+        this.moments = this.innerMoments
+        this.hasMore = false
+      }
+      this.isFooterLoading = false
+
+    }, 2000)
   }
 
   private requestData() {
@@ -96,6 +108,8 @@ export class TimelineViewModel {
 
   private showFirstFiveMoments() {
     this.isHeaderRefreshing = false
+    this.isFooterLoading = false
+    this.hasMore = true
     this.pageIndex = 1
     if (this.innerMoments.length >= 5) {
       this.moments = this.innerMoments.slice(0, 5)

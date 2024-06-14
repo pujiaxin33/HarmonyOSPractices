@@ -32,9 +32,23 @@ export  struct TimelinePage {
             })
           }
         }
+        if (this.viewModel.isFooterLoading) {
+          ListItem() {
+            Column() {
+              LoadingProgress()
+                .width(50)
+                .height(50)
+            }
+            .width('100%')
+            .alignItems(HorizontalAlign.Center)
+          }
+        }
       }
       .width('100%')
       .height('100%')
+      .onReachEnd(() => {
+        this.viewModel.loadMore()
+      })
     }
     .backgroundColor(Color.White)
     .width('100%')
