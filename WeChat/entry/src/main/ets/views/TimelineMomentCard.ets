@@ -5,6 +5,7 @@ import { LoadingImage } from './LoadingImage'
 @Component
 export struct TimelineMomentCard {
   model: TimelineMomentModel
+  photoCallback: (string) => void
 
   build() {
     Column() {
@@ -62,6 +63,9 @@ export struct TimelineMomentCard {
           LoadingImage({url: item.url})
             .width('100%')
             .height('100%')
+            .onClick(() => {
+              this.photoCallback(item.url)
+            })
         }
       })
     }

@@ -20,6 +20,7 @@ export struct LoadingImage {
         .onFinish(() => {
           this.isLoading = false
         })
+        .objectFit(ImageFit.Cover)
         .backgroundColor(Color.Pink)
     }
   }

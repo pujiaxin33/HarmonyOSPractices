@@ -4,7 +4,7 @@ import { TimelineHeader } from '../views/TimelineHeader'
 import common from '@ohos.app.ability.common';
 import { TimelineMomentCard } from '../views/TimelineMomentCard';
 
-@Preview
+@Entry
 @Component
 export  struct TimelinePage {
   @State viewModel: TimelineViewModel = new TimelineViewModel()
@@ -27,7 +27,9 @@ export  struct TimelinePage {
           ListItemGroup() {
             ForEach(this.viewModel.moments, (item) => {
               ListItem() {
-                TimelineMomentCard({model: item})
+                TimelineMomentCard({model: item, photoCallback: (url) => {
+                  this.viewModel.pushToPhotoPage(url)
+                }})
               }
             })
           }

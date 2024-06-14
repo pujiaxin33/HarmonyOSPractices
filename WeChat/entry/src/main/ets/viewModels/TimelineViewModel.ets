@@ -1,5 +1,6 @@
 
 import prompt from '@ohos.prompt'
+import router from '@ohos.router'
 import { TimelineMomentModel } from '../models/TimelineMomentModel'
 import { TimelineProfileModel } from '../models/TimelineProfileModel'
 import { TimelineMomentEntity } from '../repositories/Entities/TimelineMomentEntity'
@@ -42,6 +43,14 @@ export class TimelineViewModel {
       this.isFooterLoading = false
 
     }, 2000)
+  }
+
+  pushToPhotoPage(url: string) {
+    router.pushUrl({url: 'pages/PhotoPage', params: { "url": url }}).then(() => {
+      console.log("susscess router")
+    }).catch((error) => {
+      console.log("error router")
+    })
   }
 
   private requestData() {
