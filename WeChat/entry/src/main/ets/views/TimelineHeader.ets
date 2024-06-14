@@ -16,7 +16,7 @@ export struct TimelineHeader {
     Stack({ alignContent: Alignment.BottomEnd }) {
       Image(this.model.profileImage)
         .width('100%')
-        .height('80%')
+        .height('100%')
 
       Row() {
         Text(this.model.nick)
@@ -27,7 +27,7 @@ export struct TimelineHeader {
       }
       .margin({right: 15})
     }
-    .height(300)
+    .height(200)
     .width('100%')
   }
 }

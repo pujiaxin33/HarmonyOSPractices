@@ -1,5 +1,6 @@
 
 import { TimelineMomentCommentModel, TimelineMomentImageModel, TimelineMomentModel } from '../models/TimelineMomentModel'
+import { LoadingImage } from './LoadingImage'
 @Preview
 @Component
 export struct TimelineMomentCard {
@@ -58,10 +59,9 @@ export struct TimelineMomentCard {
     Grid() {
       ForEach(this.model.images, (item: TimelineMomentImageModel) => {
         GridItem() {
-          Image(item.url)
+          LoadingImage({url: item.url})
             .width('100%')
             .height('100%')
-            .backgroundColor(Color.Red)
         }
       })
     }
