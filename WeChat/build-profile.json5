@@ -1,6 +1,20 @@
 {
   "app": {
-    "signingConfigs": [],
+    "signingConfigs": [
+      {
+        "name": "default",
+        "type": "HarmonyOS",
+        "material": {
+          "certpath": "/Users/jiaxin.pu/.ohos/config/auto_debug_WeChat_com.example.wechat_80086000155413268.cer",
+          "storePassword": "0000001B5E07B46B373463E577AA0F97838F4D00B2A34CD8A062051AD262B06A9E71CB131903347A957B59",
+          "keyAlias": "debugKey",
+          "keyPassword": "0000001BFE8428CC078373BEC84E37D0F133B5113C38F4525EBD2FE1715E7D1570339E7BCF4A690B8DDA57",
+          "profile": "/Users/jiaxin.pu/.ohos/config/auto_debug_WeChat_com.example.wechat_80086000155413268.p7b",
+          "signAlg": "SHA256withECDSA",
+          "storeFile": "/Users/jiaxin.pu/.ohos/config/auto_debug_WeChat_com.example.wechat_80086000155413268.p12"
+        }
+      }
+    ],
     "compileSdkVersion": 9,
     "compatibleSdkVersion": 9,
     "products": [

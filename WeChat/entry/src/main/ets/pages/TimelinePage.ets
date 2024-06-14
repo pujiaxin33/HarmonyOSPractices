@@ -1,13 +1,36 @@
 
+import { TimelineViewModel } from '../viewModels/TimelineViewModel'
+import { TimelineHeader } from '../views/TimelineHeader'
+import common from '@ohos.app.ability.common';
+
 @Preview
 @Component
 export  struct TimelinePage {
+  @State viewModel: TimelineViewModel = new TimelineViewModel()
+
+  aboutToAppear() {
+    this.viewModel.loadData()
+  }
+
   build() {
-    Column() {
-      Text("朋友圈")
-        .width('100%')
-        .height('100%')
-        .textAlign(TextAlign.Center)
+    List() {
+      if (this.viewModel.profile) {
+        ListItemGroup() {
+          ListItem() {
+            TimelineHeader({model: this.viewModel.profile})
+          }
+        }
+      }
+      if (this.viewModel.moments.length > 0) {
+        ListItemGroup() {
+          ForEach(this.viewModel.moments, (item) => {
+
+          })
+        }
+      }
+      ListItem() {
+        Text("123").backgroundColor(Color.Red)
+      }
     }
     .backgroundColor(Color.White)
     .width('100%')
