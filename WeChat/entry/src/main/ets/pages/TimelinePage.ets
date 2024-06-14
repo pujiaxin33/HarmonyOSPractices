@@ -14,26 +14,33 @@ export  struct TimelinePage {
   }
 
   build() {
-    List() {
-      if (this.viewModel.profile) {
-        ListItemGroup() {
-          ListItem() {
-            TimelineHeader({model: this.viewModel.profile})
+    Refresh({refreshing: this.viewModel.isHeaderRefreshing }) {
+      List() {
+        if (this.viewModel.profile) {
+          ListItemGroup() {
+            ListItem() {
+              TimelineHeader({model: this.viewModel.profile})
+            }
           }
         }
-      }
-      if (this.viewModel.moments.length > 0) {
-        ListItemGroup() {
-          ForEach(this.viewModel.moments, (item) => {
+        if (this.viewModel.moments.length > 0) {
+          ListItemGroup() {
+            ForEach(this.viewModel.moments, (item) => {
               ListItem() {
                 TimelineMomentCard({model: item})
               }
-          })
+            })
+          }
         }
       }
+      .width('100%')
+      .height('100%')
     }
     .backgroundColor(Color.White)
     .width('100%')
     .height('100%')
+    .onRefreshing(() => {
+      this.viewModel.refreshData()
+    })
   }
 }
