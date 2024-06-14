@@ -1,6 +1,6 @@
 import { TimelineMomentCommentEntity, TimelineMomentEntity, TimelineMomentImageEntity, TimelineMomentSenderEntity } from '../repositories/Entities/TimelineMomentEntity'
 
-
+@Observed
 export class TimelineMomentModel {
   content: string
   images: TimelineMomentImageModel[] = []
@@ -73,7 +73,6 @@ export class TimelineMomentSenderModel {
 export class TimelineMomentCommentModel {
   content: string
   sender: TimelineMomentSenderModel
-  uuid: string
 
   constructor(entity: TimelineMomentCommentEntity) {
     this.content = entity.content

@@ -3,11 +3,20 @@ import { TimelineViewModel } from '../viewModels/TimelineViewModel'
 import { TimelineHeader } from '../views/TimelineHeader'
 import common from '@ohos.app.ability.common';
 import { TimelineMomentCard } from '../views/TimelineMomentCard';
+import InputCommentDialog from '../views/InputCommentDialog';
 
 @Entry
 @Component
 export  struct TimelinePage {
   @State viewModel: TimelineViewModel = new TimelineViewModel()
+
+  customDialogController: CustomDialogController = new CustomDialogController({
+    builder: InputCommentDialog({title: "请输入评论", onConfirm: (inputText: string) => {
+        this.viewModel.addCommentToEditingMoment(inputText)
+    }}),
+    alignment: DialogAlignment.Center,
+    customStyle: true
+  });
 
   aboutToAppear() {
     this.viewModel.loadData()
@@ -27,9 +36,16 @@ export  struct TimelinePage {
           ListItemGroup() {
             ForEach(this.viewModel.moments, (item) => {
               ListItem() {
-                TimelineMomentCard({model: item, photoCallback: (url) => {
+                TimelineMomentCard({
+                  model: item,
+                  photoCallback: (url) => {
                   this.viewModel.pushToPhotoPage(url)
-                }})
+                  },
+                  commentCallback: () => {
+                    this.viewModel.updateEditingMoment(item)
+                    this.customDialogController.open()
+                  }
+                })
               }
             })
           }

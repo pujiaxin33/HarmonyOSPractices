@@ -1,9 +1,9 @@
 
 import prompt from '@ohos.prompt'
 import router from '@ohos.router'
-import { TimelineMomentModel } from '../models/TimelineMomentModel'
+import { TimelineMomentCommentModel, TimelineMomentModel } from '../models/TimelineMomentModel'
 import { TimelineProfileModel } from '../models/TimelineProfileModel'
-import { TimelineMomentEntity } from '../repositories/Entities/TimelineMomentEntity'
+import { TimelineMomentCommentEntity, TimelineMomentEntity, TimelineMomentSenderEntity } from '../repositories/Entities/TimelineMomentEntity'
 import { TimelineProfileEntity } from '../repositories/Entities/TimelineProfileEntity'
 import { TimelineUseCase } from '../useCases/TimelineUseCase'
 
@@ -12,6 +12,7 @@ export class TimelineViewModel {
   moments: TimelineMomentModel[] = []
   isHeaderRefreshing: boolean = false
   isFooterLoading: boolean = false
+  editingMoment?: TimelineMomentModel
   private useCase: TimelineUseCase = new TimelineUseCase()
   private innerMoments: TimelineMomentModel[] = []
   private pageIndex: number = 1
@@ -51,6 +52,24 @@ export class TimelineViewModel {
     }).catch((error) => {
       console.log("error router")
     })
+  }
+
+  updateEditingMoment(model: TimelineMomentModel) {
+    this.editingMoment = model
+  }
+
+  addCommentToEditingMoment(comment: string) {
+    let senderEntity: TimelineMomentSenderEntity = {
+      username: "鑫鑫",
+      nick: "暴走的鑫鑫",
+      avatar: "https://xianmobilelab.gitlab.io/moments-data/images/user/avatar.png"
+    }
+    let commentEntity: TimelineMomentCommentEntity = {
+      content: comment,
+      sender: senderEntity
+    }
+    let newComment = new TimelineMomentCommentModel(commentEntity)
+    this.editingMoment.comments = this.editingMoment.comments.concat(newComment)
   }
 
   private requestData() {

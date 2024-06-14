@@ -4,8 +4,9 @@ import { LoadingImage } from './LoadingImage'
 @Preview
 @Component
 export struct TimelineMomentCard {
-  model: TimelineMomentModel
+  @ObjectLink model: TimelineMomentModel
   photoCallback: (string) => void
+  commentCallback: () => void
 
   build() {
     Column() {
@@ -21,7 +22,15 @@ export struct TimelineMomentCard {
           if (this.model.hasImages) {
             this.Photos()
           }
+          Row() {
+            Blank()
 
+            Button("评论")
+              .onClick(() => {
+                this.commentCallback()
+              })
+          }
+          .width('100%')
           if (this.model.hasComments) {
             this.Comments()
           }
@@ -95,6 +104,7 @@ export struct TimelineMomentCard {
         .fontSize(12)
 
       Text(model.content)
+        .layoutWeight(1)
         .fontSize(12)
     }
     .width('100%')
