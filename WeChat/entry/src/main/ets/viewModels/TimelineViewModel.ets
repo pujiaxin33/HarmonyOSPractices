@@ -1,12 +1,13 @@
 
 import prompt from '@ohos.prompt'
+import { TimelineMomentModel } from '../models/TimelineMomentModel'
 import { TimelineProfileModel } from '../models/TimelineProfileModel'
-import { TimelineMomentEntity } from '../repositories/Entities/TimelineMomentEntity'
 import { TimelineProfileEntity } from '../repositories/Entities/TimelineProfileEntity'
 import { TimelineUseCase } from '../useCases/TimelineUseCase'
+
 export class TimelineViewModel {
   profile: TimelineProfileModel
-  moments: TimelineMomentEntity[] = []
+  moments: TimelineMomentModel[] = []
   private useCase: TimelineUseCase = new TimelineUseCase()
 
   loadData() {
@@ -30,7 +31,9 @@ export class TimelineViewModel {
             this.profile = new TimelineProfileModel(result.value)
           } else {
             console.log("array data")
-            this.moments = result.value
+            this.moments = result.value.map(item => {
+              return new TimelineMomentModel(item)
+            })
           }
         } else {
           error = result.reason
@@ -59,8 +62,10 @@ export class TimelineViewModel {
 
   private requestMoments() {
     this.useCase.requestMoments().then( moments => {
-      console.log(`viewmodel moments: ${moments[0].content}`)
-      this.moments = moments
+      this.moments = moments.map(item => {
+        return new TimelineMomentModel(item)
+      })
+      console.log(`viewmodel moments: ${this.moments[0].content}`)
     }).catch(error => {
       console.log(error)
     })

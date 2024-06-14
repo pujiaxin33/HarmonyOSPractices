@@ -16,8 +16,10 @@ export class TimelineRepository {
   requestMoments() {
     let urlPath = '/tweets.json'
     return MockApiClient.startRequest(urlPath, http.RequestMethod.GET).then((response) => {
-      let model: Array<TimelineMomentEntity> = JSON.parse(response.result.toString())
-      return model
+      let models: Array<TimelineMomentEntity> = JSON.parse(response.result.toString())
+      return models.filter(item => {
+        return (item.content && item.content.length > 0 && item.sender && item.sender.avatar && item.sender.avatar.length > 0)
+      })
     })
   }
 }

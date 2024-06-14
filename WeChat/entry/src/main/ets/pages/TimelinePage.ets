@@ -2,6 +2,7 @@
 import { TimelineViewModel } from '../viewModels/TimelineViewModel'
 import { TimelineHeader } from '../views/TimelineHeader'
 import common from '@ohos.app.ability.common';
+import { TimelineMomentCard } from '../views/TimelineMomentCard';
 
 @Preview
 @Component
@@ -24,12 +25,11 @@ export  struct TimelinePage {
       if (this.viewModel.moments.length > 0) {
         ListItemGroup() {
           ForEach(this.viewModel.moments, (item) => {
-
+              ListItem() {
+                TimelineMomentCard({model: item})
+              }
           })
         }
-      }
-      ListItem() {
-        Text("123").backgroundColor(Color.Red)
       }
     }
     .backgroundColor(Color.White)
